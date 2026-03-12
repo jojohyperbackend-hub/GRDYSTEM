@@ -274,7 +274,7 @@ export async function PUT(req: NextRequest) {
   // Strip fields that should never be updated directly
   const { id: _id, user_id: _uid, type: _type, created_at: _ca, ...updateFields } = body
 
-  const payload = {
+  const payload: Record<string, unknown> & { updated_at: string } = {
     ...updateFields,
     updated_at: new Date().toISOString(),
   }
